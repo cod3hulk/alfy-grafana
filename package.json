@@ -1,0 +1,43 @@
+{
+  "name": "alfy-grafana",
+  "version": "0.0.0",
+  "description": "Alfred workflow for grafana",
+  "license": "MIT",
+  "repository": "cod3hulk/alfy-grafana",
+  "author": {
+    "name": "",
+    "email": "",
+    "url": "github.com/cod3hulk"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava",
+    "postinstall": "alfred-link"
+  },
+  "files": [
+    "index.js",
+    "icon.png",
+    "info.plist"
+  ],
+  "keywords": [
+    "alfred",
+    "workflow",
+    ""
+  ],
+  "dependencies": {
+    "alfred-link": "^0.1.0",
+    "alfred-notifier": "^0.1.0",
+    "alfy": "^0.3.0"
+  },
+  "devDependencies": {
+    "alfy-test": "^0.3.0",
+    "ava": "^0.15.2",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "space": 2
+  }
+}
