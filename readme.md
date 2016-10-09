@@ -16,6 +16,19 @@ $ npm install -g alfy-grafana
 
 In Alfred, type `grafana`, <kbd>Enter</kbd>, and your query.
 
+## Config
+Config is placed in '~/Library/Preferences/alfy-nodejs/config.json':
+'''json
+{
+    "grafana": {
+        "host": "localhost",
+        "port": 3000,
+        "user": "admin",
+        "password": "admin"
+    }
+}
+'''
+
 
 ## License
 
