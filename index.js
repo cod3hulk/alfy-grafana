@@ -18,7 +18,8 @@ const options = {
   },
   query: {
     query: alfy.input
-  }
+  },
+  maxAge: 300000
 };
 
 alfy.fetch('http://' + host + ':' + port + '/api/search', options).then(data => {
