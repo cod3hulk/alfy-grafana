@@ -4,31 +4,27 @@ const alfredNotifier = require('alfred-notifier');
 
 alfredNotifier();
 
-alfy.error(alfy.config.path);
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+const host = alfy.config.get('grafana.host') || 'localhost';
+const port = alfy.config.get('grafana.port') || 80;
 
-const host = alfy.config.get('grafana.host') || 'test';
-const port = alfy.config.get('grafana.port') || 3000;
-const user = alfy.config.get('grafana.user') || 'admin';
-const password = alfy.config.get('grafana.password') || 'admin';
-const auth = new Buffer(`${user}:${password}`).toString('base64');
+if (port !== 80) {
+  host += `:${port}`
+}
 
 const options = {
   method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Basic ' + auth
-  },
   query: {
     query: alfy.input
   },
   maxAge: 300000
 };
 
-alfy.fetch(`${host}:${port}/api/search`, options).then(data => {
+alfy.fetch(`${host}/api/search`, options).then(data => {
   const items = data
     .map(x => ({
       title: x.title,
-      arg: `${host}:${port}/dashboard/${x.uri}`
+      arg: `${host}/dashboard/${x.uri}`
     }));
 
   alfy.output(items);
