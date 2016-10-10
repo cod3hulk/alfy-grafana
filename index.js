@@ -4,6 +4,8 @@ const alfredNotifier = require('alfred-notifier');
 
 alfredNotifier();
 
+alfy.error(alfy.config.path);
+
 const host = alfy.config.get('grafana.host') || 'test';
 const port = alfy.config.get('grafana.port') || 3000;
 const user = alfy.config.get('grafana.user') || 'admin';
