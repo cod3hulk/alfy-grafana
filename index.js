@@ -4,10 +4,10 @@ const alfredNotifier = require('alfred-notifier');
 
 alfredNotifier();
 
-const host = alfy.config.get('grafana.host');
-const port = alfy.config.get('grafana.port');
-const user = alfy.config.get('grafana.user');
-const password = alfy.config.get('grafana.password');
+const host = alfy.config.get('grafana.host') || 'test';
+const port = alfy.config.get('grafana.port') || 3000;
+const user = alfy.config.get('grafana.user') || 'admin';
+const password = alfy.config.get('grafana.password') || 'admin';
 const auth = new Buffer(`${user}:${password}`).toString('base64');
 
 const options = {
@@ -22,11 +22,11 @@ const options = {
   maxAge: 300000
 };
 
-alfy.fetch(`http://${host}:${port}/api/search`, options).then(data => {
+alfy.fetch(`${host}:${port}/api/search`, options).then(data => {
   const items = data
     .map(x => ({
       title: x.title,
-      arg: `http://${host}:${port}/dashboard/${x.uri}`
+      arg: `${host}:${port}/dashboard/${x.uri}`
     }));
 
   alfy.output(items);
